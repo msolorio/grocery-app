@@ -14,6 +14,12 @@ const cards = [
     quantity: 1,
     target: 1,
     incrementor: 0.1
+  },
+  {
+    name: 'tomato',
+    quantity: 4,
+    target: 5,
+    incrementor: 1
   }
 ];
 
