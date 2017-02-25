@@ -1,46 +1,69 @@
 import React from 'react';
+
 import Header from './header';
-import Cards from './cards';
-import EditForm from './editForm';
 import List from './list';
+import AddItemForm from './addItemForm';
+import Cards from './cards';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.viewToShow = this._viewToShow.bind(this);
+const App = React.createClass({
+  getInitialState() {
+    return { viewToShow: 'cards' };
+  },
 
-    this.state = { viewType: 'cards' };
-    localStorage.setItem('app:props', JSON.stringify(props));
-  }
+  componentWillMount() {
 
-  _viewToShow(viewType) {
-    this.setState({ viewType });
-  }
+    // dummy data
+    this.itemsArray = [
+      {
+        name: 'spinach',
+        quantity: 0.7,
+        target: 1,
+        incrementor: 0.1,
+        location: 'Sprouts'
+      },
+      {
+        name: 'sweet potato',
+        quantity: 5,
+        target: 8,
+        incrementor: 1,
+        location: 'Sprouts'
+      },
+      {
+        name: 'dates',
+        quantity: 0.4,
+        target: 1,
+        incrementor: 0.1,
+        location: 'Costco'
+      }
+    ];
 
-  renderView(viewType) {
-    switch (viewType) {
+  },
+
+  handleNavClicked(viewToShow) {
+    this.setState({ viewToShow });
+  },
+
+  renderView(viewToShow) {
+    switch (viewToShow) {
       case 'cards':
-        return <Cards />;
-      case 'editForm':
-        return <EditForm />;
+        return <Cards itemsArray={this.itemsArray} />;
       case 'list':
         return <List />;
+      case 'addItemForm':
+        return <AddItemForm />;
       default:
-        return <p> VIEW DOESN'T EXISTS </p>
+        return <div>no view to show</div>;
     }
-  }
+  },
 
   render() {
     return (
       <div className="jsxApp">
-        <Header viewToShow={this.viewToShow} />
-        <main className="main">
-          { this.renderView(this.state.viewType) }
-        </main>
+        <Header handleNavClicked={this.handleNavClicked} />
+        {this.renderView(this.state.viewToShow)}
       </div>
     );
   }
-}
+});
 
 module.exports = App;
