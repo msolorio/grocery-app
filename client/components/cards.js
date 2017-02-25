@@ -1,45 +1,26 @@
 import React from 'react';
+
 import Card from './card';
 
-// dummy data
-const cards = [
-  {
-    name: 'sweet potato',
-    quantity: 5,
-    target: 8,
-    incrementor: 1
-  },
-  {
-    name: 'spinach',
-    quantity: 1,
-    target: 1,
-    incrementor: 0.1
-  },
-  {
-    name: 'tomato',
-    quantity: 4,
-    target: 5,
-    incrementor: 1
-  }
-];
+function Cards(props) {
 
-function Cards() {
-
-  const cardsList = cards.map((card, index) => {
+  // create collection of li's of cards
+  const cardsList = props.itemsArray.map((item, index) => {
     return (
       <Card
         key={index}
-        name={card.name}
-        quantity={card.quantity}
-        target={card.target}
-        incrementor={card.incrementor}
+        name={item.name}
+        quantity={item.quantity}
+        target={item.target}
       />
     );
   });
 
   return (
     <div className="jsxCards">
-      {cardsList}
+      <ul className="unorderedList">
+        {cardsList}
+      </ul>
     </div>
   );
 }

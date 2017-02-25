@@ -1,24 +1,22 @@
 import React from 'react';
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      navClicked: undefined
-    }
-  }
+function Header(props) {
 
-  render() {
-    return (
-      <header className="jsxHeader">
-        <ul className="navLinks">
-          <li className="navLink navLink-getList" onClick={() => { this.props.viewToShow('list'); }}>Get List</li>
-          <li className="navLink navLink-home" onClick={() => { this.props.viewToShow('cards'); }}>Home</li>
-          <li className="navLink navLink-addItem" onClick={() => { this.props.viewToShow('editForm'); }}>Add Item</li>
-        </ul>
-      </header>
-    );
-  }
+  return (
+    <div className="jsxHeader">
+      <ul className="unorderedList">
+        <li className="listItem" onClick={() => { props.handleNavClicked('list') }}>
+          Get List
+        </li>
+        <li className="listItem" onClick={() => { props.handleNavClicked('cards') }}>
+          Home
+        </li>
+        <li className="listItem" onClick={() => { props.handleNavClicked('addItemForm') }}>
+          Add Item
+        </li>
+      </ul>
+    </div>
+  );
 }
 
 module.exports = Header;
