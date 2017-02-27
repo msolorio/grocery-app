@@ -9,18 +9,20 @@ function Cards(props) {
     return (
       <Card
         key={index}
+        index={index}
         name={item.name}
         quantity={item.quantity}
         target={item.target}
+        handleDownClicked={props.handleDownClicked}
+        handleUpClicked={props.handleUpClicked}
+        units={item.units}
       />
     );
   });
 
   return (
     <div className="jsxCards">
-      <ul className="unorderedList">
-        {cardsList}
-      </ul>
+      {cardsList}
     </div>
   );
 }
